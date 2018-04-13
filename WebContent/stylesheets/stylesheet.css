@@ -1,0 +1,583 @@
+/*CSS Variables*/
+:root{
+    --background-b: #247;
+    --background-album:linear-gradient(to top, #000000, #434343););
+    --gradian: #000;
+    --controls: #333;
+    --spotify: #2c5;
+    --light: #fff;
+    --base: #bbb;
+    --shadow: 0 1px 5px rgba(0,0,0,0.9 );
+    --sidebar: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,1));
+    --gradiant: linear-gradient(to top, #24c6dc, #514a9d);
+    --gradiant2:linear-gradient(to right, #348AC7, #7474BF);
+    --gradiant3: linear-gradient(to top, #000000, #302b63, #24243e);
+    /*https://uigradients.com/#Mantle*/
+}
+
+html{
+    /* 1. https://www.youtube.com/watch?v=8KtoC9MpoZ0 - 12:30
+       2. https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing*/
+
+    /* tells the browser to account for any border
+       and padding in the values you specify for
+       width and height.*/
+    box-sizing: border-box;
+    font-family: Arial,Helvetica, SansSerif;
+    color: var(--light); /*elements to white*/
+}
+
+body{
+    margin: 0;
+}
+
+.bg-default{
+    background: var(--gradiant3) no-repeat;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.bg-new{
+    background: var(--background-album);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.bg-search{
+    background: var(--gradian);
+    margin: 0;
+    line-height: 1.4;
+
+}
+
+/*Styling on all a tags*/
+.btn{
+	background-color: transparent;
+    color: var(--base);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.home{
+    color: var(--light);
+    text-decoration: none;
+}
+
+/* .main-nav a:nth-child(n):hover{
+    color: var(--spotify);
+} */
+
+
+/*static - only green item on page (check-mark)*/
+.current a{
+    color:var(--spotify);
+    text-decoration: none;
+    border: none;
+}
+
+img{
+    max-width: 100%;
+}
+
+.wrapper{
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 90px;
+    grid-template-columns: 200px auto;
+    grid-template-areas: "sidebar content"
+                         "footer footer";
+}
+
+/*=============================
+  Sidebar - style
+===============================*/
+
+.sidebar{
+    grid-area: sidebar;
+    background: var(--sidebar);
+    padding-top: 1.6rem;
+    padding-left: 1rem;
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /*user @ bottom*/
+    position: relative;
+}
+
+#spotifyIcon{
+	background-color: var(--shadow);
+	border: none;
+	outline: none;
+	cursor: pointer;
+	text-decoration: none;
+	color: var(--light);
+}
+
+#spotifyIcon:hover{
+	color: var(--spotify);
+}
+
+/*~~~~~~~~~ Search Style~~~~~~~~~~*/
+
+.sidebar>li{
+    justify-items: center;
+    padding: 1rem;
+
+}
+
+#search_li{
+
+    border-top: 1px solid var(--base);
+    border-bottom: 1px solid var(--base);
+    width: 90%;
+    padding-bottom: .5rem;
+}
+
+
+.search {
+
+    display: block;
+    color: var(--base);
+    font-size: 16px;
+    position: relative;
+    float: left;
+}
+
+
+
+.search button {
+    background-color: var(--shadow);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: left;
+    font-size: 18px;
+    color: var(--base);
+    float: left;
+    width: 140px;
+
+}
+
+
+.icon{
+    float: right;
+    position: absolute;
+    top: -6px;
+    left: 130px;
+
+}
+
+
+.search>*:hover {
+    transition-duration: .4s;
+    transition-delay: 50ms;
+    color: var(--light);
+}
+
+#spotifyIcon:hover{
+    transition-duration: .4s;
+    transition-delay: 50ms;
+    color: var(--spotify);
+}
+
+
+.search input {
+    text-indent: 5px;
+}
+.search .fa-search {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+/*~~~~^^^^ Search Style ^^^^~~~~*/
+
+
+.main-nav ul{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-nav li{
+    padding-top: 0.6rem;
+}
+
+
+.btn-nav{
+	color: var(--base);
+	text-decoration: none;
+	border: none;
+	outline: none;
+	background: var(--shadow);
+	font-size: 1.1rem;
+	cursor: pointer;
+    font-weight: 600;
+}
+
+.search_term{ font-weight: 600;}
+
+.btn-nav:hover{
+    transition-duration: .4s;
+    transition-delay: 50ms;
+	color: var(--spotify);
+}
+.selected{
+	color: var(--light);
+}
+
+.active{
+	color: var(--spotify);
+}
+
+.user-profile{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+
+}
+
+.user-profile img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0 10px;
+}
+
+.user-profile h4{
+    font-size: 0.9rem;
+}
+
+/*=============================
+  Content - style
+===============================*/
+.music-showcase{
+    grid-area: content;
+    /*https://stackoverflow.com/questions/46726732/
+    fixed-header-and-footer-with-scrollable-sidebar-inside-1fr-css-grid-region*/
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.showcase ul{
+    display: flex;
+    flex: 1 0 auto;
+    list-style-type: none;
+    padding: 5px 10px 0;
+    justify-content: center;
+
+}
+
+.showcase li{
+    display: flex;
+    padding: 0 30px;
+    min-height: 50px;
+    align-items: center;
+}
+
+.showcase button{
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: bolder;
+}
+
+.start > button{
+    color: var(--light);
+}
+
+.showcase button:hover{
+    color: var(--light);
+}
+
+#box-header{
+    text-align: center;
+}
+
+.boxes{
+    display: grid;
+    grid-gap: 0.3rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 0 0.3rem 0 0.3rem;
+    justify-items: center;
+    align-items: center;
+}
+.box{
+    text-align: center;
+}
+
+.box img{
+    padding: 0;
+    box-shadow: var(--shadow);
+}
+
+/*=============================
+ Controls - style
+===============================*/
+.controls{
+    grid-area: footer;
+    background: var(--controls);
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+.controls>div {
+    display: flex;
+}
+
+/*~~~~~~~~~~~Current~~~~~~~~~~~*/
+.current{
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.current img{
+    width: 50px;
+    height: 50px;
+}
+
+/*heading margins*/
+.current .song *{
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.current .song > p{
+    color: var(--base);
+    font-size: 0.7rem;
+}
+
+/*~~~~~~~~~~~Player~~~~~~~~~~~*/
+
+.player{
+    flex-direction: column;
+
+}
+
+.player-controls{
+    display: flex;
+    align-items: center;
+}
+
+.player-controls a{
+    padding: 0 10px 0 10px;
+
+}
+.player-controls a:hover{
+    color:var(--light);
+}
+
+.timer{
+    display: flex;
+    justify-content: space-between;
+    color: var(--base);
+    font-size: 0.8rem;
+}
+
+/*~~~~~~~Volume/Playlist~~~~~~*/
+
+.playlist-volume{
+    align-items: center;
+}
+
+.playlist-volume a{
+    padding: 0 10px 0 10px;
+}
+
+/*~~~~~~~~~~~SEARCH~~~~~~~~~~~~~~~*/
+
+
+
+
+/*
+    ========================================================
+                            Search Box
+    ========================================================
+*/
+
+#searchField{
+    margin-right: 0;
+}
+.search-area{
+    background: var(--grey);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding-left: 1.5rem;
+    padding-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-area>p{
+    font-size: .8rem;
+    font-weight: 600;
+}
+.search-area>input{
+    background: none;
+    font-size: 3rem;
+    font-weight: 600;
+    caret-color: var(--spotify);
+    outline:none;
+    border: none;
+    color: var(--light);
+}
+
+/*
+    ========================================================
+                            Search Results
+    ========================================================
+*/
+.search-wrapper{
+    display: grid;
+    margin: 0;
+    overflow-y: auto
+}
+
+.search-results{
+    display: grid;
+    grid-row-gap: 2rem;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "first_result"
+    "all_artist"
+    "all_albums";
+}
+
+.first-result{
+    grid-area: first_result;
+
+}
+
+.all-artist{
+    grid-area: all_artist;
+}
+
+.all-artist img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    padding: 0 10px;
+}
+
+.all-albums{
+    grid-area: all_albums;
+}
+
+
+
+.result-container{
+    display: flex;
+    padding: 1rem;
+    max-width: 100%;
+    height: auto;
+}
+
+.artist-img{
+    align-content: left;
+    text-align: center;
+    padding-right: 1rem;
+}
+.artist-img img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    padding: 0 10px;
+    align-items: left;
+
+}
+
+
+
+/*
+    ========================================================
+                            first result
+    ========================================================
+*/
+
+.result-track-list{
+    width: 100%;
+}
+
+.result-list{
+    flex: 1 0 auto;
+    /* list-style-type: none; */
+    padding: 5px 10px 0 ;
+}
+
+.result-list li{
+    display: flex;
+    padding: 0 30px;
+    min-height: 50px;
+    width: auto;
+    border-bottom: var(--grey) solid 1px;
+}
+
+.result-list li:hover{
+    background-color: var(--grey) ;
+}
+
+.result-list li p{
+    padding: 0.4rem;
+
+}
+
+.result-list li span.length {
+    padding: 3px;
+    color: var(--base);
+    
+}
+
+
+#songLength{
+	font-size: .8rem;
+	font-weight: 600;
+}
+
+#space{
+    display:flex;
+    justify-content: space-between;
+    
+}
+
+.re-song *{
+    margin: 0;
+    padding-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+}
+
+.re-song > p{
+    color: var(--base);
+    font-size: 0.7rem;
+    
+}
+
+#songArtistresult{
+	padding: 0;
+}
+
+
+
+.selections{
+	display: flex;
+	flex-direction: column;
+}
+
+.hrActive{
+	margin: 3px;
+    border: 0;
+    height: 2px;
+    background-color: var(--spotify);
+    width: 46px;}
+}

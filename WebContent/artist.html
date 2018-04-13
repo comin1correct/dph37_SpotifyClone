@@ -1,0 +1,70 @@
+<script>
+$(document).ready(function(){
+    $('body').removeClass().addClass('bg-new');
+    search();
+    
+    function search(){
+    	$.get(searchURL = "api/get_artist", function(data){
+    		searchResults(data)
+	    	});
+	    }
+    
+    function searchResults(data){
+    	console.log(data)
+     	var music_list = $(".music-list");
+    	for(var i =0; i<data.length; i++){
+    	
+    	music_list.append("<li>"+        
+    			"<p id = 'firstName'>"+data[i].first_name+" "+data[i].last_name+"</p>"+
+    	        "<p class='sm--hide' id= 'bandName'>"+data[i].band_name+"</p>"+
+    	        "<p class= 'sm--right' id= 'bio'>"+data[i].bio+"</p>"+
+    	        "<p class='sm--hide'><span class='catty-cloud'> CLOUD SYNC</span></p>"+
+   	            "</li>");
+    	
+
+    	} 
+    }
+});
+</script>
+<!--
+=====================================
+~~~~~~~~~~~~~~SHOWCASE~~~~~~~~~~~~~~~
+=====================================
+-->
+<main class="main">
+
+    <!--music art and playbacks-->
+    <div class="main__header">
+
+        <div class="img"> <!-- Album art-->
+            <img src="http://bit.ly/2sc2NJd"/>
+        </div>
+
+        <section class="details"> <!-- Album details-->
+            <div>
+                <p>CattyBoard Top 100 Single Charts (11.06.36)</p>
+                <p class="sm--hide">Unknown Artist</p>
+                <p class="sm--hide">2016 . charts . 100 songs</p>
+            </div>
+
+            <div> <!-- Controls-->
+                <!--https://fontawesome.com/how-to-use/svg-with-js-->
+                <i class="fas fa-play fa-fw"></i>Play all
+                <i class="fas fa-plus fa-fw"></i> Add to
+                <i class="fas fa-ellipsis-h fa-fw"></i>More
+            </div>
+
+        </section>
+    </div> <!--main_header END-->
+
+    <!--album details-->
+    <div>
+        <ul class="music-list">
+
+
+        </ul>
+
+
+    </div> <!--END - album details-->
+
+</main>

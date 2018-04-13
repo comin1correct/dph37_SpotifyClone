@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Spotify</title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
+ 
+ <script>
+ 
+ 	//data a global variable - line ~42
+	var searchResult = null;	
+	$(document).ready(function(){
+		
+		$("#btnSearch").click(function(){
+			var searchBy = $("#cboSearchBy").val();
+			var searchTerm = $("#txtSearch").val();
+			search(searchBy, searchTerm); 
+		});
+		
+		$("#txtSearch").keyup(function(){
+			
+			var searchBy = $("#cboSearchBy").val();
+			var searchTerm = $("#txtSearch").val();
+			if(searchTerm.length == 3){
+				search(searchBy, searchTerm); 
+				console.log(searchTerm);
+			}
+			else if(searchTerm.length > 3)
+			{
+				console.log("Search our own dataset")
+				songSearchResults(searchResult);
+			}
+		});
+
+	});
+	
+	function search(key, val){
+		console.log("In Search: "+key, val);
+		var searchUrl = "api/get_music?" + key + "=" + val;
+		//GET METHOD
+		console.log(searchUrl);
+		$.get(searchUrl, function(data){
+			console.log(data);
+			debugger;
+			searchResult = data;
+			songSearchResults(data);
+		});
+	}
+	
+	function songSearchResults(data){
+		var tbl = $("#tblData");	
+		tbl.empty(); // removing all children element each time it is called and add new objects.
+		var displayLimit = 50;
+		
+		if(data.length < 50){
+			displayLimit = data.length;
+		}
+		
+		for(var i = 0; i < displayLimit; i++){
+			/* console.log(data[i]); */
+			var tr = $("<tr></tr>");
+			var td = $("<td></td>");
+			td.html(data[i].title);
+			tr.append(td);
+			
+			//overwrite
+			td = $("<td></td>");
+			td.html(data[i].length);
+			tr.append(td);
+			
+			//overwrite
+			td = $("<td></td>");
+			td.html(data[i].record_date);
+			tr.append(td);
+			
+			tbl.append(tr);
+		}
+	}
+</script>
+ 
+ 
+ </head>
+<body>
+<div>
+
+	
+	<select id = "cboSearchBy">
+		<option value= "title"> Search by song title</option>
+		<option value = "artist"> Search by artist name </option>
+		<option value = "songYear"> Search by song release year</option>
+		<option value = "album"> Search by album title </option>
+	</select>
+	<br>
+	
+	<input type = "text" id="txtSearch" value = ""/>
+	
+	<input type = "button" id="btnSearch" value="Search"/>
+	
+</div>
+<br>
+
+<div>
+<table id = "tblData" border = "1px" cellspacing = "0px" cellpadding = "4px">
+
+</table>
+</div>
+
+</body>
+</html>

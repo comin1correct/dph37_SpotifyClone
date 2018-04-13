@@ -1,0 +1,83 @@
+<script>
+
+
+    //home-spotify Icon:
+    $(document).ready(function(){
+        $("#spotifyIcon").click(function () {
+            $("#album").removeClass("active");
+            $("#artist").removeClass("active");
+            $("#song").removeClass("active");
+            $('body').removeClass().addClass('bg-default');
+            $("#showcase").load("showcase-home.html");
+        });
+
+        //Search:
+        $("#search").click(function () {
+            $("#album").removeClass("active");
+            $("#artist").removeClass("active");
+            $("#song").removeClass("active");
+
+            $("#showcase").load("search.html");
+            $('body').removeClass().addClass('bg-search');
+        });
+
+        //Album:
+        $("#album").click(function () {
+            $("#album").addClass("active");
+            $("#artist").removeClass("active");
+            $("#song").removeClass("active");
+            $("#showcase").load("album.html");
+            $('body').removeClass().addClass('bg-new');
+        });
+
+        //Artist:
+        $("#artist").click(function(){
+            $("#album").removeClass("active");
+            $("#artist").addClass("active");
+            $("#song").removeClass("active");
+
+            $("#showcase").load("artist.html");
+           $('body').removeClass().addClass('bg-new');
+        });
+
+        //Songs:
+        $("#song").click(function () {
+            $("#album").removeClass("active");
+            $("#artist").removeClass("active");
+            $("#song").addClass("active");
+           $("#showcase").load("song.html");
+           $('body').removeClass().addClass('bg-new');
+        });
+        
+        var jsonQuery;
+    });
+
+
+</script>
+<div>
+        <!--Navigation-->
+        <div>
+            <nav class="main-nav">
+                <button  type = "button" id= "spotifyIcon"><i id="spotifyIcon" class="fab fa-spotify fa-3x"></i></button>
+                <ul>
+                    <li id="search_li">
+                        <div class="search">
+                            <!--https://codepen.io/jamesbarnett/pen/aBnbL?editors=1100-->
+
+                            <button type = "button" class = "search_term"  id = "search">Search</button>
+                            <span class="icon"><i id ="icon_s" class="fas fa-search"></i></span>
+
+                        </div>
+                    </li>
+                    <li><button type = "button" class="btn-nav" id="album"> Albums</button></li>
+                    <li><button type = "button" class="btn-nav" id="artist"> Artists</button></li>
+                    <li><button type = "button" class="btn-nav" id="song"> Songs</button></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="user-profile">
+            <img src="https://source.unsplash.com/random/100x100" alt="User" id = "userImage">
+            <h4 id="userName">David Hinton</h4>
+        </div>
+</div>

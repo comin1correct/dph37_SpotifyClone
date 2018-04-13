@@ -1,0 +1,102 @@
+<<script type="text/javascript">
+
+      	   
+      	   $(document).ready(function(){
+   			//https://stackoverflow.com/questions/2010892/storing-objects-in-html5-localstorage
+          	   // Retrieve the object from storage
+          	  /*  var retrievedObject = localStorage.getItem('dataQuery'); */
+          	   var data = JSON.parse(localStorage.getItem('dataQuery'));
+          	   searchResults(data)
+          
+          	  	function searchResults(data){
+          		
+          		 console.log(JSON.parse(JSON.stringify(data)));
+          		 //target tag:
+          		var	artistName = $("#artistName");          		
+          		var ul = $("#ulSongs");
+          		
+          		/* TOP RESULTS */
+				for(var i = 0; i < data.music.length && i < 4; i++){
+					
+					artistName.html(data.music[i].band_name);
+					ul.append("<li id = 'space'>"+ "<div class='re-song'>"+
+                        		"<h5 id = 'songTitle'>"+data.music[i].title+"</h5>"+
+                        		"<p id = 'songArtistresult'>"+data.music[i].band_name+"</p> </div>"+
+                    "<p class='sm--hide' id= 'songLength'><span class='length'></span>"
+                    +data.music[i].length.toString().replace(".",":")+"</p></li>")
+          			}
+				
+				/* ARTIST */
+				var artist = $("#artists")
+				for(var i = 0; i < data.artists.length&& i < 9; i++){
+					artist.append("<div class='box'>"+
+				            "<img src='https://source.unsplash.com/random/200x20"+i+"' alt=''>"+
+				            "<h3>"+data.artists[i].first_name+"</h3>"+
+				        "</div>");
+				}
+				
+				/* ALBUMS */
+				var albums = $("#albums")
+				for(var i = 0; i < data.albums.length&& i < 9; i++){
+					albums.append("<div class='box'>"+
+		            "<img src='https://source.unsplash.com/random/200x20"+i+"' alt=''>"+
+		            "<h3>"+data.albums[i].title+"</h3>"+
+		        "</div>");
+					
+				}
+          		
+          	  	} //END searchResults
+          	   
+          	   //Click on Albums
+         	   $("#albumR").click(function(){
+         		  
+         		  var query = $("#searchField").val();
+         		  /* $("#result-cont").load("album.html"); */
+         		  $(".result-container").remove();
+         		 $(".all-albums").remove();
+          	   }); 
+      	   });
+      	       	   
+</script>
+
+<div class="first-result">
+    <section>
+        <header class="showcase">
+            <ul>
+            	<li class = selections ><button class = "btn selected" id = "topRun">Top Results</button><hr class = "hrActive"></li>
+                <li class = selections ><button class = "btn" id = "albumR">Albums</button></li>
+                <li class = selections><button class = "btn" id = "trackR">Tracks</button></li>
+                <li class = selections><button class = "btn" id = "artistR">Artist</button></li>
+            </ul>
+        </header>
+        
+        <div class="result-container" id = "result-cont">
+            <div class="artist-img">
+                <img src="https://source.unsplash.com/random/200x212" alt="User" id = "userImage">
+                <h4 id="artistName"></h4>
+            </div>
+            
+            <div class="result-track-list">
+                <ul class="result-list" id = "ulSongs"></ul>
+            </div>
+        </div> <!--END CONTAINER-->
+        
+    </section>
+</div>
+
+<div class="all-artist" >
+    <h1 id="box-header">Artists</h1>
+    <!--Boxes Section -->
+    <section class="boxes" id="artists">
+
+    </section>
+</div>
+
+<div class="all-albums">
+    <h1 id="box-header">Albums</h1>
+    <!--Boxes Section -->
+    <section class="boxes" id="albums">
+
+    </section>
+
+</div>

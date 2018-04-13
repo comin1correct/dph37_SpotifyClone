@@ -1,0 +1,64 @@
+
+<script>
+$(document).ready(function(){
+/*     var input = $("#searchField")
+    input.focus();
+    input.on('keyup', function(event){
+	       if(event.which == 13)
+	       {
+	    	   	console.log(input.val())
+	    	  	var query = input.val();
+	        	search(query)
+	       } 
+    }*/
+	       
+	$("#searchField").keyup(function(){		
+	
+		var searchTerm = $("#searchField").val();
+		if(searchTerm.length >= 3)
+		{
+			/* debugger; */
+			search(searchTerm); 
+			console.log(searchTerm);
+		}
+		
+		//REMOVED - No client side storage
+/* 		else if(searchTerm.length > 3)
+		{
+			console.log("Search our own dataset")
+			songSearchResults(searchResult);
+		} */
+
+});
+          
+       function search(term) {
+           var searchURL = "api/get_music?searchTerm=" + term;
+           $.get(searchURL, function (data) {
+        	   /* console.log(data); */
+        	   var dataQuery = data
+        	  
+        	 //https://stackoverflow.com/questions/2010892/storing-objects-in-html5-localstorage
+        	// Put the object into storage
+        	   localStorage.setItem('dataQuery', JSON.stringify(dataQuery));
+               
+               $("#result-search-con").load("results.html");
+           });
+       }
+
+
+    }); //END ready()
+    
+</script>
+
+<div class="search-wrapper">
+<div class="search-area">
+    <p>Search for an Artist, Song, Album or Playlist</p>
+    <input id="searchField" type="text" placeholder="Start typing...">
+</div>
+
+<div class="search-results" id="result-search-con">
+
+
+</div> <!--END RESULTS-->
+
+</div>
