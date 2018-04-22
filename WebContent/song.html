@@ -28,6 +28,35 @@ $(document).ready(function(){
 
 </script>
 
+<script type="text/javascript">
+
+//SONG Model:
+var SongModel = Backbone.Model.extend({});
+
+//COLLECTION: 
+var SongList = Backbone.Collection.extend({
+	model: SongModel,
+	url: 'api/get_music'
+});
+
+var songList = new SongList();
+
+
+songList.fetch({
+	success: function(response, xhr){
+		console.log('Inside Success');
+		console.log(response);
+	},
+	error: function(errorResponse){
+		console.log('Error: ');
+		console.log(errorResponse);
+	}
+});
+
+
+
+</script>
+
 
 <!--
 =====================================

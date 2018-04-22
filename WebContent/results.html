@@ -15,9 +15,25 @@
           		var	artistName = $("#artistName");          		
           		var ul = $("#ulSongs");
           		
+          		
           		/* TOP RESULTS */
+          		if(data.music.length == 0){
+    				for(var i = 0; i < data.songs.length && i < 10; i++){
+    					artistName.html(data.songs[i].title);
+    					ul.append("<li id = 'space'>"+ "<div class='re-song'>"+
+                            		"<h5 id = 'songTitle'>"+data.songs[i].title+"</h5>"+
+                            		"<p id = 'songArtistresult'>"+data.songs[i].title+"</p> </div>"+
+                        "<p class='sm--hide' id= 'songLength'><span class='length'></span>"
+                        +data.songs[i].length.toString().replace(".",":")+"</p>"+
+                        "<p><audio controls>"+
+                        "<source src='music/Shepherds Pie.mp3' type='audio/mpeg'>"+
+                        "Your browser does not support the audio element."
+                        +"</audio></p></li>")
+              			}
+          		}
+          		
+          		else{
 				for(var i = 0; i < data.music.length && i < 4; i++){
-					
 					artistName.html(data.music[i].band_name);
 					ul.append("<li id = 'space'>"+ "<div class='re-song'>"+
                         		"<h5 id = 'songTitle'>"+data.music[i].title+"</h5>"+
@@ -29,6 +45,8 @@
                     "Your browser does not support the audio element."
                     +"</audio></p></li>")
           			}
+          		}
+          	
 				
 				/* ARTIST */
 				var artist = $("#artists")
