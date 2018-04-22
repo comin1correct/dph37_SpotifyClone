@@ -1,7 +1,7 @@
 <script>
 $(document).ready(function(){
     $('body').removeClass().addClass('bg-new');
-    search();
+     search();
     
     function search(){
     	$.get(searchURL = "api/get_songs", function(data){
@@ -22,9 +22,13 @@ $(document).ready(function(){
    	            "</li>");
   
     	} 
-    }
+    } 
 });
+
+
 </script>
+
+
 <!--
 =====================================
 ~~~~~~~~~~~~~~SHOWCASE~~~~~~~~~~~~~~~
@@ -59,8 +63,15 @@ $(document).ready(function(){
     <!--album details-->
     <div>
         <ul class="music-list">
-
-
+<!--          <script id="SongElement" type="text/template" >
+			<li>        
+    			<p id= 'title'><%= title %></p>
+                <p class='sm--hide' id= 'length'><%= length %></p>
+                <p class= 'sm--right' id= 'releaseDate'><%= release_date %></p>
+                <p class='sm--hide'><span class='catty-cloud'> CLOUD SYNC</span></p>
+   	       </li>
+		</script>
+-->
         </ul>
 
 

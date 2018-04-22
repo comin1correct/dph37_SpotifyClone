@@ -23,7 +23,11 @@
                         		"<h5 id = 'songTitle'>"+data.music[i].title+"</h5>"+
                         		"<p id = 'songArtistresult'>"+data.music[i].band_name+"</p> </div>"+
                     "<p class='sm--hide' id= 'songLength'><span class='length'></span>"
-                    +data.music[i].length.toString().replace(".",":")+"</p></li>")
+                    +data.music[i].length.toString().replace(".",":")+"</p>"+
+                    "<p><audio controls>"+
+                    "<source src='music/Shepherds Pie.mp3' type='audio/mpeg'>"+
+                    "Your browser does not support the audio element."
+                    +"</audio></p></li>")
           			}
 				
 				/* ARTIST */
@@ -31,6 +35,7 @@
 				for(var i = 0; i < data.artists.length&& i < 9; i++){
 					artist.append("<div class='box'>"+
 				            "<img src='https://source.unsplash.com/random/200x20"+i+"' alt=''>"+
+				    
 				            "<h3>"+data.artists[i].first_name+"</h3>"+
 				        "</div>");
 				}
@@ -58,6 +63,7 @@
       	   });
       	       	   
 </script>
+
 
 <div class="first-result">
     <section>
